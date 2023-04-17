@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import Board from "./Components/Board/Board.component";
 import logo from "./logo.svg";
-import { gameSubject } from "./State/game";
+import { gameSubject, initGame } from "./State/Game";
 
 function App() {
   const [board, setBoard] = useState([]);
   useEffect(() => {
+    initGame();
     const subscribe = gameSubject.subscribe((game) => setBoard(game.board));
     return () => subscribe.unsubscribe();
   }, []);
