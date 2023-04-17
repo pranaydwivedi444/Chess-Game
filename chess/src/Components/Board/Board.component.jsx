@@ -12,11 +12,21 @@ function Board({ board }) {
     const { x, y } = getXYPOS(i);
     return (x + y) % 2 === 0;
   }
+
+  function getPosition(i) {
+    const { x, y } = getXYPOS(i);
+    const letter = ["a", "b", "c", "d", "e", "f", "g", "h"][x];
+    return `${letter}${y + 1}`;
+  }
   return (
     <div className="board">
       {board.flat().map((piece, i) => (
         <div key={i} className="square">
-          <BoardSquare piece={piece} black={isBlack(i)} />
+          <BoardSquare
+            piece={piece}
+            black={isBlack(i)}
+            position={getPosition(i)}
+          />
           {/* <p>{JSON.stringify(piece)}</p> */}
         </div>
       ))}
